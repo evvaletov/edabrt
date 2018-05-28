@@ -1,5 +1,5 @@
 
-# stepfg: STEP File Generator                
+# edabrt: Electrostatic Deflector Aberrations
 Authors: E. Valetov and M. Berz  
 Organization: Michigan State University  
 Creation date: 25-Jan-2018  
