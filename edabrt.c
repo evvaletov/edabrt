@@ -13,6 +13,8 @@
  * MSUHEP-180212, Michigan State University (2018)                          *
  ****************************************************************************/
 
+#define _DEFAULT_SOURCE
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -169,13 +171,13 @@ double calculate_aberration(double radius, double ang, double n1, double n2,
     }
 }
 
-int print_aberrations(double radius, double ang, double n1, double n2,
-                      int index1) {
+void print_aberrations(double radius, double ang, double n1, double n2,
+                       int index1) {
     double aberration;
     int max_order = 2;
     int number_of_variables = 2;
     int first_non_zero = 0;
-    char index_string[20];
+    char index_string[64];
     int counter = 1;
     for (int order = 1; order <= max_order; order++) {
         int index_array[number_of_variables + 1];
@@ -190,10 +192,9 @@ int print_aberrations(double radius, double ang, double n1, double n2,
                                               index2);
             sprintf(index_string, "%i", index_array[0]);
             if (number_of_variables > 1)
-                for (int j = 1; j <= number_of_variables - 1; j++) {
-                    snprintf(index_string, sizeof index_string, "%s %i",
-                             index_string, index_array[j]);
-                }
+                for (int j = 1; j <= number_of_variables - 1; j++)
+                    sprintf(index_string + strlen(index_string),
+                            " %i", index_array[j]);
             if (aberration != 0) {
                 if (counter == 1)
                     printf("     I  COEFFICIENT           ORDER EXPONENTS\n");
