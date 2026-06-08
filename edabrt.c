@@ -86,23 +86,20 @@ double calculate_aberration(double radius, double ang, double n1, double n2,
                     case 10:
                         return cosh(s3n1 * s);
                     case 01:
-                        return -sinh(s3n1 * s) / s3n1;
+                        return sinh(s3n1 * s) / s3n1;
                     case 20:
-                        return h * (4 * (3 * n1 + n2 - 3) * cosh(s3n1 * s) -
-                                    3 * (4 * n1 + n2 - 6) *
-                                    (2 * cosh(2 * s3n1 * s) - 1) -
-                                    (6 + n2) * cosh(4 * s3n1 * s)) /
-                               (6 * (n1 - 3));
+                        return 4 * h * (9 * n1 + 2 * n2 - 15 +
+                                        (6 * n1 + n2 - 12) * cosh(s3n1 * s)) *
+                               pow(sinh(s3n1 * s / 2), 2) / (3 * (n1 - 3));
                     case 11:
-                        return (4 * (3 * n1 + n2 - 3) * sinh(s3n1 * s) -
-                                (6 + n2) * sinh(4 * s3n1 * s)) /
-                               (6 * pow(n1 - 3, 1.5));
+                        return 2 * (3 - 3 * n1 - n2 +
+                                    (6 * n1 + n2 - 12) * cosh(s3n1 * s)) *
+                               sinh(s3n1 * s) / (3 * pow(n1 - 3, 1.5));
                     case 02:
-                        return -(4 * (9 * n1 + 2 * n2 - 15) * cosh(s3n1 * s) -
-                                 3 * (4 * n1 + n2 - 6) *
-                                 (2 * cosh(2 * s3n1 * s) + 1) +
-                                 (6 + n2) * cosh(4 * s3n1 * s)) /
-                               (6 * h * pow(n1 - 3, 2));
+                        return 4 * (3 - 3 * n1 - n2 +
+                                    (6 * n1 + n2 - 12) * cosh(s3n1 * s)) *
+                               pow(sinh(s3n1 * s / 2), 2) /
+                               (3 * h * pow(n1 - 3, 2));
                     default:
                         return 0;
                 }
